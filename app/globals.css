@@ -4,8 +4,12 @@
   --background: #0B0F14;
   --card: #1F2937;
   --primary: #3B82F6;
-  --accent: #8B5CF6;
+  --accent: #10B981;
   --success: #10B981;
+}
+
+* {
+  cursor: none !important;
 }
 
 body {

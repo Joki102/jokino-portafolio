@@ -1,21 +1,50 @@
 "use client"
 import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
+
+const roles = [
+  "Ingeniero en Sistemas",
+  "Full Stack Developer",
+  "DevOps Engineer",
+  "Especialista en Redes",
+  "Ciberseguridad",
+]
 
 export default function Hero() {
+  const [roleIndex, setRoleIndex] = useState(0)
+  const [displayed, setDisplayed] = useState("")
+  const [deleting, setDeleting] = useState(false)
+
+  useEffect(() => {
+    const current = roles[roleIndex]
+    let timeout: NodeJS.Timeout
+
+    if (!deleting && displayed.length < current.length) {
+      timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 60)
+    } else if (!deleting && displayed.length === current.length) {
+      timeout = setTimeout(() => setDeleting(true), 1800)
+    } else if (deleting && displayed.length > 0) {
+      timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 35)
+    } else if (deleting && displayed.length === 0) {
+      setDeleting(false)
+      setRoleIndex((roleIndex + 1) % roles.length)
+    }
+
+    return () => clearTimeout(timeout)
+  }, [displayed, deleting, roleIndex])
+
   return (
     <section className="h-screen flex flex-col items-center justify-center text-center px-6 relative">
 
-      {/* Badge */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="mb-6 px-4 py-1.5 rounded-full border border-blue-500/40 bg-blue-500/10 text-blue-400 text-sm tracking-widest uppercase"
+        className="mb-6 px-4 py-1.5 rounded-full border border-green-500/40 bg-green-500/10 text-green-400 text-sm tracking-widest uppercase"
       >
-        ¡Desarrollo de software modernos y soluciones tecnológicas!
+        Disponible para proyectos
       </motion.div>
 
-      {/* Name */}
       <motion.h1
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -28,17 +57,20 @@ export default function Hero() {
         </span>
       </motion.h1>
 
-      {/* Role */}
-      <motion.p
+      {/* Typewriter role */}
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.35 }}
-        className="text-blue-400 text-lg md:text-xl tracking-widest uppercase mb-6 font-light"
+        className="text-lg md:text-xl tracking-widest uppercase mb-6 font-light h-8 flex items-center gap-1"
       >
-        Cierre de pensum Ingenieria en Sistemas &nbsp;-&nbsp; Junior Developer
-      </motion.p>
+        <span style={{ color: "#3b82f6" }}>{displayed}</span>
+        <span
+          className="w-0.5 h-5 bg-blue-400 animate-pulse"
+          style={{ animationDuration: "0.8s" }}
+        />
+      </motion.div>
 
-      {/* Description */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -49,7 +81,6 @@ export default function Hero() {
         con React, Node.js, Python y Docker.
       </motion.p>
 
-      {/* CTAs */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -58,10 +89,17 @@ export default function Hero() {
       >
         <a
           href="#projects"
-          className="px-8 py-3 rounded-lg font-medium text-white transition-all duration-300"
+          className="px-8 py-3 rounded-lg font-medium text-white transition-all duration-300 hover:opacity-90"
           style={{ background: "linear-gradient(90deg, #2563eb, #0ea5e9)" }}
         >
           Ver proyectos
+        </a>
+        <a
+          href="/cv.pdf"
+          download
+          className="px-8 py-3 rounded-lg font-medium text-green-400 border border-green-500/40 hover:bg-green-500/10 transition-all duration-300"
+        >
+          Descargar CV
         </a>
         <a
           href="#contact"
@@ -71,7 +109,6 @@ export default function Hero() {
         </a>
       </motion.div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

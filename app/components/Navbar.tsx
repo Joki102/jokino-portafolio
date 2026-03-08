@@ -1,13 +1,15 @@
 "use client";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import VisitorCounter from "./VisitorCounter";
 
 const links = [
   { label: "Inicio", href: "#" },
-  { label: "Sobre mi", href: "#about" },
+  { label: "Sobre mi", href: "#about" },s
+  { label: "Habilidades", href: "#skills" },
   { label: "Tecnologias", href: "#technologies" },
+  { label: "Experiencia", href: "#timeline" },
   { label: "Proyectos", href: "#projects" },
-  { label: "Servicios", href: "#services" },
   { label: "Contacto", href: "#contact" },
 ];
 
@@ -35,17 +37,20 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
 
-        {/* Logo */}
-        <a href="#" className="flex items-center gap-2 group">
+        {/* Logo + counter */}
+        <a href="#" className="flex items-center gap-3 group">
           <div
             className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-white"
             style={{ background: "linear-gradient(135deg, #2563eb, #10b981)" }}
           >
             J
           </div>
-          <span className="font-bold text-white text-lg tracking-tight group-hover:text-blue-400 transition-colors">
-            Jokino
-          </span>
+          <div className="flex flex-col">
+            <span className="font-bold text-white text-lg tracking-tight group-hover:text-blue-400 transition-colors leading-none">
+              Jokino
+            </span>
+            <VisitorCounter />
+          </div>
         </a>
 
         {/* Desktop links */}
@@ -55,7 +60,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setActive(link.href)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+              className={`px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 ${
                 active === link.href
                   ? "text-white bg-blue-500/15 border border-blue-500/25"
                   : "text-gray-400 hover:text-white hover:bg-gray-800/60"
@@ -72,7 +77,7 @@ export default function Navbar() {
           className="hidden md:block px-5 py-2 rounded-lg text-sm font-medium text-white transition-all duration-300 hover:opacity-90"
           style={{ background: "linear-gradient(90deg, #2563eb, #0ea5e9)" }}
         >
-          Hablemos
+          Contactame
         </a>
 
         {/* Mobile menu button */}

@@ -91,7 +91,7 @@ export default function Contact() {
             {/* Location */}
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 text-xs font-bold">
-                MX
+                GTQ
               </div>
               <div>
                 <p className="text-gray-500 text-xs mb-0.5">Ubicacion</p>
