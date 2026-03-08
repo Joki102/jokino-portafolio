@@ -42,7 +42,7 @@ export default function Hero() {
         transition={{ duration: 0.5 }}
         className="mb-6 px-4 py-1.5 rounded-full border border-green-500/40 bg-green-500/10 text-green-400 text-sm tracking-widest uppercase"
       >
-        Disponible para proyectos
+        Transformando ideas en codigo y soluciones tecnologicas.
       </motion.div>
 
       <motion.h1
