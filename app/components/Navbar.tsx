@@ -5,7 +5,7 @@ import VisitorCounter from "./VisitorCounter";
 
 const links = [
   { label: "Inicio", href: "#" },
-  { label: "Sobre mi", href: "#about" },s
+  { label: "Sobre mi", href: "#about" },
   { label: "Habilidades", href: "#skills" },
   { label: "Tecnologias", href: "#technologies" },
   { label: "Experiencia", href: "#timeline" },
@@ -77,7 +77,7 @@ export default function Navbar() {
           className="hidden md:block px-5 py-2 rounded-lg text-sm font-medium text-white transition-all duration-300 hover:opacity-90"
           style={{ background: "linear-gradient(90deg, #2563eb, #0ea5e9)" }}
         >
-          Contactame
+          Hablemos
         </a>
 
         {/* Mobile menu button */}
